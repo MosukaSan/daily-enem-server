@@ -4,7 +4,7 @@ import cron from 'node-cron';
 import { QuestionObject } from "./types/questionType";
 
 export function scheduleQuestion() {
-    cron.schedule('10 18 * * *', changeQuestion);
+    cron.schedule('0 0 * * *', changeQuestion);
 }
 
 export async function changeQuestion(): Promise<string> {
