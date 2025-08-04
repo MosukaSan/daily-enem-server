@@ -9,7 +9,7 @@ changeQuestion();
 scheduleQuestion();
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:8080', 'https://daily-enem-production.up.railway.app/'],
+    origin: ['http://localhost:5173', 'http://localhost:8080', 'https://daily-enem-production.up.railway.app'],
     credentials: false
 }));
 
