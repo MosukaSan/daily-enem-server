@@ -9,7 +9,7 @@ changeQuestion();
 scheduleQuestion();
 
 app.use(cors({
-    origin: ['https://dailyenem.xyz'],
+    origin: ['https://www.dailyenem.xyz'],
     credentials: false
 }));
 
