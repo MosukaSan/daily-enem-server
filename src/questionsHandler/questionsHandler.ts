@@ -4,7 +4,9 @@ import { QuestionObject } from "../types/questionType";
 import { fetchWithRetry } from "./api";
 
 export function scheduleQuestion() {
-    cron.schedule('0 0 * * *', changeQuestions);
+    cron.schedule('0 0 * * *', changeQuestions, {
+        timezone: "America/Sao_Paulo"
+    });
 }
 
 export async function changeQuestions(): Promise<string> {
