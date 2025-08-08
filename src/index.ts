@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
-import { changeQuestion, scheduleQuestion } from './scheduleQuestion';
-import { getQuestion } from './question';
+import { changeQuestions, scheduleQuestion } from './questionsHandler/questionsHandler';
+import { getQuestion, subjectOptions, SubjectOptions } from './questionsHandler/question';
 import cors from 'cors';
 
 const app = express();
 const port = 3000;
-changeQuestion();
+changeQuestions();
 scheduleQuestion();
 
 app.use(cors({
@@ -14,8 +14,18 @@ app.use(cors({
 }));
 
 app.get('/questions/getDailyQuestion', (req: Request, res: Response) => {
-    const question = getQuestion();
-    res.send(question);
+    const subject = req.query.subject;
+
+    if (typeof subject === 'string') {
+        if (subjectOptions.includes(subject as any)) {
+            const question = getQuestion(subject as SubjectOptions);
+            res.send(question);
+        } else {
+            res.status(400).send({ error: 'Assunto inválido.' });
+        }
+    } else {
+        res.send(getQuestion('geral'));
+    }
 });
 
 app.listen(port, () => {
